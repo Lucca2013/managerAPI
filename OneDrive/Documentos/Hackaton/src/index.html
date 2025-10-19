@@ -1,0 +1,38 @@
+<script>
+  let users = {
+    "Arthur Ferreira": {
+      skills: ["HTML", "CSS", "JS", "React"],
+      availability: "medium",
+      receivedTasks: [],
+    },
+    saintsHr: {
+      skills: ["C", "HTML", "CSS"],
+      availability: "high",
+      receivedTasks: [],
+    },
+    Lucca: {
+      skills: ["JS", "TS", "SQL", "Python", "C#"],
+      availability: "high",
+      receivedTasks: ["Create SQL"],
+    },
+  };
+
+  let tasks = {
+    "site frontend": "medium",
+    "backend NodeJs": "high",
+    "criar sistema operacional": "medium",
+  };
+
+  fetch("/allocate-tasks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ users, tasks }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.table(data);
+    })
+    .catch((err) => console.error("Erro na requisição:", err));
+</script>
